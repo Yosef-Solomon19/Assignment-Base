@@ -13,7 +13,32 @@ fetch(endpoint)
 function findMatches(wordToMatch, names) {
 	return names.filter(restaurants => {
 		const regex = new RegExp (wordToMatch, 'gi');
-		return restaurants.names.math(regex) 		
+		return restaurants.name.match(regex) 		
 
 	});
 }
+
+// Create display function 
+// Display matches from what the user is typing 
+function displayMatches() {
+	const matchArray = findMatches(this.value, names);
+	const html = matchArray.map(restaurants => {
+		const regex = new RegExp(this.value, 'gi');
+		const restaurantName = restaurants.name.replace(regex, `<span class="h1">${this.value}</span>`); // Highlights the restaurants name 
+		const restaurantAddress = restaurants.address_line_1.replace(regex, `<span class="h1">${this.value}</span>`); // Highlights the address of the restaurant 
+		return `
+			<li>
+			<span class = "title">${restaurantName}</span>
+			<span class = "address">${restaurantAddress}</span>
+			<span class = "city">${restaurants.city}</span>
+			<span class = "category">${restaurants.category}</span>
+		`;
+	}).join('');
+	recommendations.innerHTML = html;	
+	
+}
+const searchInput = document.querySelector('.typehead');
+const recommendations = document.querySelector('.recommendations');
+
+searchInput.addEventListener('change', displayMatches);
+searchInput.addEventListener('keyup', displayMatches);
