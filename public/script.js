@@ -24,12 +24,11 @@ function displayMatches() {
 	const matchArray = findMatches(this.value, names);
 	const html = matchArray.map(restaurants => {
 		const regex = new RegExp(this.value, 'gi');
-		const restaurantName = restaurants.name.replace(regex, `<span class="h1">${this.value}</span>`); // Highlights the restaurants name 
-		const restaurantAddress = restaurants.address_line_1.replace(regex, `<span class="h1">${this.value}</span>`); // Highlights the address of the restaurant 
+		const restaurantName = restaurants.name.replace(regex, `<span class="h1">${this.value}</span>`); // Highlights the restaurants name 		
 		return `
 			<li>
 			<span class = "title">${restaurantName}</span>
-			<span class = "address">${restaurantAddress}</span>
+			<span class = "address">${restaurants.address_line_1}</span>
 			<span class = "city">${restaurants.city}</span>
 			<span class = "category">${restaurants.category}</span>
 		`;
