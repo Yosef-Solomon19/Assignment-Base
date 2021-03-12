@@ -2,7 +2,7 @@ const endpoint = "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json
 
 async function windowActions() {
 	const request = await fetch(endpoint) // Fetch request
-	const names = await request.json() // Empty array, this replaces the race condition promise chain
+	const names = await request.json() // Empty array, this replaces the condition promise chain
 																		// from the original tutorial
 
 
